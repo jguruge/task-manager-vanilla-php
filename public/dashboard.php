@@ -1,78 +1,50 @@
 <?php
 require_once "../middleware/auth.php";
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
+    <title>Task Dashboard</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
 <body>
 
-<h2>Task Dashboard</h2>
-<a href="logout.php">Logout</a>
+<div class="container">
 
-<hr>
+    <h2>Task Dashboard</h2>
+    <a href="logout.php">Logout</a>
 
-<h3>Create Task</h3>
+    <hr>
 
-<input type="text" id="title" placeholder="Title">
-<input type="text" id="description" placeholder="Description">
-<button onclick="createTask()">Add</button>
+    <h3>Create Task</h3>
 
-<hr>
+    <input type="text" id="title" placeholder="Task Title">
+    <input type="text" id="description" placeholder="Task Description">
+    <button onclick="createTask()">Add Task</button>
 
-<h3>Tasks</h3>
+    <hr>
 
-<ul id="taskList"></ul>
+    <h3>Filter</h3>
 
-<script>
+    <select id="statusFilter" onchange="loadTasks()">
+        <option value="">All</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+    </select>
 
-function loadTasks() {
-    fetch("../controllers/TaskController.php?action=get")
-        .then(res => res.json())
-        .then(data => {
-            const list = document.getElementById("taskList");
-            list.innerHTML = "";
-            data.forEach(task => {
-                const li = document.createElement("li");
-                li.innerHTML = `
-                    ${task.title} (${task.status})
-                    <button onclick="deleteTask(${task.id})">Delete</button>
-                `;
-                list.appendChild(li);
-            });
-        });
-}
+    <hr>
 
-function createTask() {
-    const formData = new FormData();
-    formData.append("title", document.getElementById("title").value);
-    formData.append("description", document.getElementById("description").value);
+    <h3>Task List</h3>
 
-    fetch("../controllers/TaskController.php?action=create", {
-        method: "POST",
-        body: formData
-    })
-    .then(res => res.json())
-    .then(() => loadTasks());
-}
+    <div id="taskList"></div>
 
-function deleteTask(id) {
-    const formData = new FormData();
-    formData.append("id", id);
+    <br>
 
-    fetch("../controllers/TaskController.php?action=delete", {
-        method: "POST",
-        body: formData
-    })
-    .then(() => loadTasks());
-}
+    <button onclick="prevPage()">Previous</button>
+    <button onclick="nextPage()">Next</button>
 
-loadTasks();
+</div>
 
-</script>
-
+<script src="assets/js/dashboard.js"></script>
 </body>
 </html>

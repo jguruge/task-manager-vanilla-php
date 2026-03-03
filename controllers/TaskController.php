@@ -22,7 +22,10 @@ $user_id = $_SESSION['user_id'];
 $action = $_GET['action'] ?? '';
 // GET
 if ($action === "get") {
- $tasks = $task->getByUser($user_id);
+    $status = $_GET['status'] ?? null;
+    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 5;
+    $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
+    $tasks = $task->getByUser($user_id, $status ?: null, $limit, $offset);
     echo json_encode($tasks);
     exit;
 }
