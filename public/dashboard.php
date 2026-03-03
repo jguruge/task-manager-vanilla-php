@@ -1,0 +1,19 @@
+<?php
+require_once "../middleware/auth.php";
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+
+<h2>Welcome to Dashboard</h2>
+
+<p>You are logged in successfully.</p>
+
+<a href="logout.php">Logout</a>
+
+</body>
+</html>
