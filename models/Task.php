@@ -35,11 +35,17 @@ public function getByUser($user_id, $status = null, $limit = 5, $offset = 0) {
 
     $stmt = $this->conn->prepare($sql);
 
+    $paramIndex = 1;
+    $stmt->bindValue($paramIndex++, $user_id, PDO::PARAM_INT);
+
     if ($status) {
-        $stmt->execute([$user_id, $status, $limit, $offset]);
-    } else {
-        $stmt->execute([$user_id, $limit, $offset]);
+        $stmt->bindValue($paramIndex++, $status, PDO::PARAM_STR);
     }
+
+    $stmt->bindValue($paramIndex++, (int)$limit, PDO::PARAM_INT);
+    $stmt->bindValue($paramIndex++, (int)$offset, PDO::PARAM_INT);
+
+    $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -56,6 +62,7 @@ public function getByUser($user_id, $status = null, $limit = 5, $offset = 0) {
         return $stmt->execute([$task_id, $user_id]);
     }
 
+    
 public function update($task_id, $user_id, $title, $description, $status) {
 
     $stmt = $this->conn->prepare(
@@ -70,4 +77,4 @@ public function update($task_id, $user_id, $title, $description, $status) {
 
 }
 
-// Update Task
+

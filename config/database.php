@@ -22,6 +22,7 @@ class Database {
             );
             // Set error 
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
         } catch (PDOException $error) {
 
