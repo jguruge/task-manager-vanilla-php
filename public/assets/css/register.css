@@ -18,7 +18,7 @@ body {
     max-width: 400px;
 }
 
-.login-box {
+.register-box {
     background: #ffffff;
     padding: 30px;
     border-radius: 6px;
@@ -74,8 +74,8 @@ input {
 }
 
 .message {
-    background: #ffe5e5;
-    color: #cc0000;
+    background: #e6ffe6;
+    color: #008000;
     padding: 8px;
     margin-bottom: 15px;
     border-radius: 4px;
@@ -87,4 +87,3 @@ input {
     text-align: center;
     font-size: 14px;
 }
-
