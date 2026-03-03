@@ -1,18 +1,20 @@
 <?php
+// Start session and handle login logic
 session_start();
 require_once "../models/User.php";
 
 
 $message = "";
 
+// Login user
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $user = new User();
+    $user = new User(); // Create User instance
 
-    $email = $_POST["email"];
+    $email = $_POST["email"]; // Get email and password
     $password = $_POST["password"];
 
-    if ($user->login($email, $password)) {
+    if ($user->login($email, $password)) { // Attempt login
         header("Location: dashboard.php");
         exit;
     } else {
@@ -21,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
+// login form
 <!DOCTYPE html>
 <html>
 <head>
