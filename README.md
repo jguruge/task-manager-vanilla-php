@@ -75,6 +75,32 @@ The project follows a simple MVC-inspired folder structure:
 - Structured MVC-inspired architecture
 
 
+## Features
+
+- User Registration & Login
+- Session-based Authentication
+- Create Tasks
+- View Tasks
+- Update Tasks (Mark as Completed)
+- Soft Delete Tasks
+- Filter Tasks by Status (pending / completed)
+- Pagination Support
+- REST-style JSON API
+- Basic Browser-based Frontend
+
+
+## API Endpoints
+
+All task-related endpoints are handled via `TaskController.php`.
+
+| Method | Endpoint | Description |
+|--------|----------|------------|
+| GET    | /controllers/TaskController.php?action=get | Get tasks (supports status, limit, offset) |
+| POST   | /controllers/TaskController.php?action=create | Create a new task |
+| POST   | /controllers/TaskController.php?action=update | Update an existing task |
+| POST   | /controllers/TaskController.php?action=delete | Soft delete a task |
+
+
 ## Assumptions
 
 - Only authenticated users can access dashboard pages.
