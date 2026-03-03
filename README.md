@@ -14,8 +14,26 @@ The goal of this project is to demonstrate clean architecture, secure database h
 - PHP (Vanilla)
 - PDO
 - MySQL
-- HTML (Basic frontend)
+- HTML
 - CSS
+
+
+### Folder Structure
+
+```
+task-manager-vanilla-php/
+│
+├── config/
+├── controllers/
+├── models/
+├── middleware/
+├── public/
+├── database.sql
+├── .env.example
+└── README.md
+```
+
+
 
 ## Architecture
 
@@ -46,8 +64,28 @@ The project follows a simple MVC-inspired folder structure:
 
 ## Authentication
 
-User registration uses PHP's password_hash() function to securely store passwords.
+- User registration uses PHP's password_hash() function to securely store passwords.
 
-User login verifies password using password_verify().
+- User login verifies password using password_verify().
 
-Session-based authentication is used to protect dashboard routes.
+- Session-based authentication is used to protect dashboard routes.
+
+- Basic browser-based frontend
+
+- Structured MVC-inspired architecture
+
+
+## Assumptions
+
+- Only authenticated users can access dashboard pages.
+- Each user manages their own tasks.
+- Database credentials are configured via environment variables.
+
+
+## Access Application
+
+After setup, open:
+
+http://localhost/task-manager-vanilla-php/public/login.php
+
+
