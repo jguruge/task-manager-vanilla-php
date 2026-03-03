@@ -47,3 +47,7 @@ The project follows a simple MVC-inspired folder structure:
 ## Authentication
 
 User registration uses PHP's password_hash() function to securely store passwords.
+
+User login verifies password using password_verify().
+
+Session-based authentication is used to protect dashboard routes.
