@@ -21,19 +21,28 @@ class Task {
     }
 
     // Get All Tasks 
-    public function getByUser($user_id) {
+public function getByUser($user_id, $status = null, $limit = 5, $offset = 0) {
 
-        $stmt = $this->conn->prepare(
-            "SELECT * FROM tasks 
-             WHERE user_id = ? 
-             AND deleted_at IS NULL 
-             ORDER BY created_at DESC"
-        );
+    $sql = "SELECT * FROM tasks 
+            WHERE user_id = ? 
+            AND deleted_at IS NULL";
 
-        $stmt->execute([$user_id]);
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($status) {
+        $sql .= " AND status = ?";
     }
+
+    $sql .= " ORDER BY created_at DESC LIMIT ? OFFSET ?";
+
+    $stmt = $this->conn->prepare($sql);
+
+    if ($status) {
+        $stmt->execute([$user_id, $status, $limit, $offset]);
+    } else {
+        $stmt->execute([$user_id, $limit, $offset]);
+    }
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     // Soft Delete Task
     public function softDelete($task_id, $user_id) {
@@ -47,4 +56,18 @@ class Task {
         return $stmt->execute([$task_id, $user_id]);
     }
 
+public function update($task_id, $user_id, $title, $description, $status) {
 
+    $stmt = $this->conn->prepare(
+        "UPDATE tasks 
+         SET title=?, description=?, status=? 
+         WHERE id=? AND user_id=? AND deleted_at IS NULL"
+    );
+
+    return $stmt->execute([$title, $description, $status, $task_id, $user_id]);
+}
+
+
+}
+
+// Update Task
