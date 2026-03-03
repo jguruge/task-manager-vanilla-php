@@ -43,3 +43,7 @@ The project follows a simple MVC-inspired folder structure:
 - DB_USER
 - DB_PASS
 - APP_URL
+
+## Authentication
+
+User registration uses PHP's password_hash() function to securely store passwords.
