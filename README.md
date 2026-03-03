@@ -26,3 +26,20 @@ The project follows a simple MVC-inspired folder structure:
 - models/ – database operations
 - middleware/ – authentication checks
 - public/ – frontend and entry points
+
+
+## Setup Instructions
+
+1. Clone the repository
+2. Import `database.sql` into MySQL
+3. Copy `.env.example` to `.env`
+4. Configure database credentials
+5. Run using XAMPP or any local server
+
+## Environment Variables
+
+- DB_HOST
+- DB_NAME
+- DB_USER
+- DB_PASS
+- APP_URL
